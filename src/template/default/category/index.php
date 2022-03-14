@@ -3,7 +3,7 @@
     function priority(id, type) {
         $.ajax({
             type: "POST",
-            url: "{:$router->build('/ebcms/cms-admin/category/priority')}",
+            url: "{echo $router->build('/ebcms/cms-admin/category/priority')}",
             data: {
                 id: id,
                 type: type,
@@ -27,10 +27,10 @@
                 新建
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="{:$router->build('/ebcms/cms-admin/category/create', ['type'=>'group'])}">分组</a></li>
-                <li><a class="dropdown-item" href="{:$router->build('/ebcms/cms-admin/category/create', ['type'=>'channel'])}">频道</a></li>
-                <li><a class="dropdown-item" href="{:$router->build('/ebcms/cms-admin/category/create', ['type'=>'list'])}">列表</a></li>
-                <li><a class="dropdown-item" href="{:$router->build('/ebcms/cms-admin/category/create', ['type'=>'page'])}">页面</a></li>
+                <li><a class="dropdown-item" href="{echo $router->build('/ebcms/cms-admin/category/create', ['type'=>'group'])}">分组</a></li>
+                <li><a class="dropdown-item" href="{echo $router->build('/ebcms/cms-admin/category/create', ['type'=>'channel'])}">频道</a></li>
+                <li><a class="dropdown-item" href="{echo $router->build('/ebcms/cms-admin/category/create', ['type'=>'list'])}">列表</a></li>
+                <li><a class="dropdown-item" href="{echo $router->build('/ebcms/cms-admin/category/create', ['type'=>'page'])}">页面</a></li>
             </ul>
         </div>
     </div>
@@ -93,8 +93,8 @@
                         <a href="#" onclick="priority('{$vo.id}', 'down')">下移</a>
                     </td>
                     <td class="text-nowrap">
-                        <a href="{:$router->build('/ebcms/cms-admin/category/update', ['id'=>$vo['id']])}">编辑</a>
-                        <a href="{:$router->build('/ebcms/cms-admin/category/delete', ['id'=>$vo['id']])}" onclick="return confirm('删除后无法恢复，确定删除？');">删除</a>
+                        <a href="{echo $router->build('/ebcms/cms-admin/category/update', ['id'=>$vo['id']])}">编辑</a>
+                        <a href="{echo $router->build('/ebcms/cms-admin/category/delete', ['id'=>$vo['id']])}" onclick="return confirm('删除后无法恢复，确定删除？');">删除</a>
                     </td>
                 </tr>
                 {/foreach}

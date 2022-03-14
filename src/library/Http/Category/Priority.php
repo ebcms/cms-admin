@@ -5,21 +5,21 @@ declare(strict_types=1);
 namespace App\Ebcms\CmsAdmin\Http\Category;
 
 use App\Ebcms\Admin\Http\Common;
-use App\Ebcms\CmsAdmin\Model\Category;
+use DigPHP\Database\Db;
 use DigPHP\Request\Request;
 
 class Priority extends Common
 {
     public function post(
         Request $request,
-        Category $categoryModel
+        Db $db
     ) {
         $type = $request->post('type');
-        $category = $categoryModel->get('ebcms_cms_category', '*', [
+        $category = $db->get('ebcms_cms_category', '*', [
             'id' => $request->post('id'),
         ]);
 
-        $categorys = $categoryModel->select('ebcms_cms_category', '*', [
+        $categorys = $db->select('ebcms_cms_category', '*', [
             'pid' => $category['pid'],
             'ORDER' => [
                 'priority' => 'DESC',
@@ -27,7 +27,7 @@ class Priority extends Common
             ],
         ]);
 
-        $count = $categoryModel->count('ebcms_cms_category', [
+        $count = $db->count('ebcms_cms_category', [
             'id[!]' => $category['id'],
             'pid' => $category['pid'],
             'priority[<=]' => $category['priority'],
@@ -47,19 +47,19 @@ class Priority extends Common
         $categorys = array_reverse($categorys);
         foreach ($categorys as $key => $value) {
             if ($key == $change_key) {
-                $categoryModel->update('ebcms_cms_category', [
+                $db->update('ebcms_cms_category', [
                     'priority' => $count,
                 ], [
                     'id' => $value['id'],
                 ]);
             } elseif ($key == $count) {
-                $categoryModel->update('ebcms_cms_category', [
+                $db->update('ebcms_cms_category', [
                     'priority' => $change_key,
                 ], [
                     'id' => $value['id'],
                 ]);
             } else {
-                $categoryModel->update('ebcms_cms_category', [
+                $db->update('ebcms_cms_category', [
                     'priority' => $key,
                 ], [
                     'id' => $value['id'],

@@ -6,6 +6,7 @@ namespace App\Ebcms\CmsAdmin\Http\Category;
 
 use App\Ebcms\Admin\Http\Common;
 use App\Ebcms\CmsAdmin\Model\Category;
+use DigPHP\Database\Db;
 use DigPHP\Form\Builder;
 use DigPHP\Form\Component\Col;
 use DigPHP\Form\Component\Row;
@@ -24,10 +25,11 @@ class Update extends Common
 {
     public function get(
         Category $categoryModel,
+        Db $db,
         Request $request,
         Router $router
     ) {
-        $category = $categoryModel->get('ebcms_cms_category', '*', [
+        $category = $db->get('ebcms_cms_category', '*', [
             'id' => $request->get('id', 0, ['intval']),
         ]);
 
@@ -190,7 +192,7 @@ class Update extends Common
 
     public function post(
         Request $request,
-        Category $categoryModel
+        Db $db
     ) {
         $update = array_intersect_key($request->post(), [
             'pid' => '',
@@ -211,7 +213,7 @@ class Update extends Common
             'redirect_uri' => '',
         ]);
 
-        $categoryModel->update('ebcms_cms_category', $update, [
+        $db->update('ebcms_cms_category', $update, [
             'id' => $request->post('id', 0, ['intval']),
         ]);
 

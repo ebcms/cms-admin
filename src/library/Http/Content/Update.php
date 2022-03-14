@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace App\Ebcms\CmsAdmin\Http\Content;
 
 use App\Ebcms\Admin\Http\Common;
-use App\Ebcms\CmsAdmin\Model\Category;
-use App\Ebcms\CmsAdmin\Model\Content;
+use DigPHP\Database\Db;
 use DigPHP\Form\Builder;
 use DigPHP\Form\Component\Col;
 use DigPHP\Form\Component\Html;
@@ -27,17 +26,16 @@ use Exception;
 class Update extends Common
 {
     public function get(
-        Category $categoryModel,
-        Content $contentModel,
+        Db $db,
         Router $router,
         Config $config,
         Request $request
     ) {
-        $content = $contentModel->get('ebcms_cms_content', '*', [
+        $content = $db->get('ebcms_cms_content', '*', [
             'id' => $request->get('id', 0, ['intval']),
         ]);
 
-        if (!$category = $categoryModel->get('ebcms_cms_category', '*', [
+        if (!$category = $db->get('ebcms_cms_category', '*', [
             'id' => $content['category_id'],
         ])) {
             return $this->error('内容错误，请删除！');
@@ -119,7 +117,7 @@ class Update extends Common
                                     $obj = new $field_class($field, 'extra[' . $field . ']', $extra[$field] ?? '');
                                 }
                                 $obj->set('help', $help);
-                                $obj->set('upload_url', $router->buildUrl('/ebcms/admin/upload'));
+                                $obj->set('upload_url', $router->build('/ebcms/admin/upload'));
                                 $obj->set('items', array_combine(explode('|', $items), explode('|', $items)));
                                 $str .= $obj;
                             }
@@ -137,7 +135,7 @@ class Update extends Common
     }
     public function post(
         Request $request,
-        Content $contentModel
+        Db $db
     ) {
         $update = array_intersect_key($request->post(), [
             'title' => '',
@@ -174,7 +172,7 @@ class Update extends Common
             }
         }
 
-        $contentModel->update('ebcms_cms_content', $update, [
+        $db->update('ebcms_cms_content', $update, [
             'id' => $request->post('id', 0, ['intval']),
         ]);
 

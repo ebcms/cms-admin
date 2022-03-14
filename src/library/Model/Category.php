@@ -6,28 +6,28 @@ namespace App\Ebcms\CmsAdmin\Model;
 
 use DigPHP\Database\Db;
 
-class Category extends Db
+class Category
 {
+
+    private $db;
+
+    public function __construct(Db $db)
+    {
+        $this->db = $db;
+    }
 
     public function getAll(): array
     {
         static $categorys;
         if ($categorys == null) {
-            $categorys = $this->select('ebcms_cms_category', '*', [
+            $categorys = $this->db->select('ebcms_cms_category', '*', [
                 'ORDER' => [
                     'priority' => 'DESC',
                     'id' => 'ASC'
                 ],
             ]);
 
-            // foreach ($categorys as &$category) {
-            //     $category['_pitems'] = $this->getPitems($categorys, $category);
-            // }
-
-            // pitems path cids
             $categorys = $this->make($categorys);
-            // print_r($categorys);
-            // die;
         }
         return $categorys;
     }
@@ -40,20 +40,6 @@ class Category extends Db
             }
         }
         return null;
-    }
-
-    private function getPitems(array $data, array $category): array
-    {
-        $res = [];
-        foreach ($data as $value) {
-            if ($value['id'] == $category['pid']) {
-                foreach ($this->getPitems($data, $value) as $item) {
-                    $res[] = $item;
-                }
-                $res[] = $value;
-            }
-        }
-        return $res;
     }
 
     private function make(array $data, $pitems = []): array

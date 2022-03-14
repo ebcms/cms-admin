@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace App\Ebcms\CmsAdmin\Http\Content;
 
 use App\Ebcms\Admin\Http\Common;
-use App\Ebcms\CmsAdmin\Model\Category;
-use App\Ebcms\CmsAdmin\Model\Content;
+use DigPHP\Database\Db;
 use DigPHP\Form\Builder;
 use DigPHP\Form\Component\Col;
 use DigPHP\Form\Component\Summary;
@@ -27,19 +26,18 @@ use Exception;
 class Create extends Common
 {
     public function get(
-        Category $categoryModel,
-        Content $contentModel,
+        Db $db,
         Request $request,
         Config $config,
         Router $router
     ) {
-        if (!$category = $categoryModel->get('ebcms_cms_category', '*', [
+        if (!$category = $db->get('ebcms_cms_category', '*', [
             'id' => $request->get('category_id'),
         ])) {
             return $this->error('操作错误！');
         }
 
-        $content = $contentModel->get('ebcms_cms_content', '*', [
+        $content = $db->get('ebcms_cms_content', '*', [
             'id' => $request->get('copyfrom'),
         ]) ?: [];
 
@@ -118,7 +116,7 @@ class Create extends Common
                                     $obj = new $field_class($field, 'extra[' . $field . ']', $extra[$field] ?? '');
                                 }
                                 $obj->set('help', $help);
-                                $obj->set('upload_url', $router->buildUrl('/ebcms/admin/upload'));
+                                $obj->set('upload_url', $router->build('/ebcms/admin/upload'));
                                 $obj->set('items', array_combine(explode('|', $ext), explode('|', $ext)));
                                 $str .= $obj;
                             }
@@ -135,8 +133,8 @@ class Create extends Common
     }
 
     public function post(
-        Request $request,
-        Content $contentModel
+        Db $db,
+        Request $request
     ) {
         $data = [
             'category_id' => $request->post('category_id', 0),
@@ -169,7 +167,7 @@ class Create extends Common
             'create_time' => time(),
             'update_time' => time(),
         ];
-        $contentModel->insert('ebcms_cms_content', $data);
+        $db->insert('ebcms_cms_content', $data);
         return $this->success('操作成功！', 'javascript:history.go(-2)');
     }
 }

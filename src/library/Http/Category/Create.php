@@ -6,6 +6,7 @@ namespace App\Ebcms\CmsAdmin\Http\Category;
 
 use App\Ebcms\Admin\Http\Common;
 use App\Ebcms\CmsAdmin\Model\Category;
+use DigPHP\Database\Db;
 use DigPHP\Form\Builder;
 use DigPHP\Form\Component\Col;
 use DigPHP\Form\Component\Row;
@@ -187,9 +188,9 @@ class Create extends Common
 
     public function post(
         Request $request,
-        Category $categoryModel
+        Db $db
     ) {
-        $categoryModel->insert('ebcms_cms_category', [
+        $db->insert('ebcms_cms_category', [
             'pid' => $request->post('pid', 0),
             'type' => $request->post('type', ''),
             'title' => $request->post('title', ''),

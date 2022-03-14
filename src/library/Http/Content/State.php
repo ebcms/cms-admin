@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace App\Ebcms\CmsAdmin\Http\Content;
 
 use App\Ebcms\Admin\Http\Common;
-use App\Ebcms\CmsAdmin\Model\Content;
-use DigPHP\Request;
+use DigPHP\Database\Db;
+use DigPHP\Request\Request;
 
 class State extends Common
 {
     public function post(
         Request $request,
-        Content $contentModel
+        Db $db
     ) {
-        $contentModel->update([
+        $db->update('ebcms_cms_content', [
             'state' => $request->post('state'),
         ], [
             'id' => $request->post('ids'),
