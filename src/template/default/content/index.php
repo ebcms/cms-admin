@@ -253,7 +253,7 @@ $categorys = $container->get(\App\Ebcms\CmsAdmin\Model\Category::class)->getAll(
                                                     },
                                                     dataType: "JSON",
                                                     success: function(response) {
-                                                        if (response.status) {
+                                                        if (response.code == 0) {
                                                             location.reload();
                                                         } else {
                                                             alert(response.message);
@@ -291,7 +291,7 @@ $categorys = $container->get(\App\Ebcms\CmsAdmin\Model\Category::class)->getAll(
                                                     },
                                                     dataType: "JSON",
                                                     success: function(response) {
-                                                        if (response.status) {
+                                                        if (response.code == 0) {
                                                             location.reload();
                                                         } else {
                                                             alert(response.message);
@@ -335,7 +335,7 @@ $categorys = $container->get(\App\Ebcms\CmsAdmin\Model\Category::class)->getAll(
                                                         },
                                                         dataType: "JSON",
                                                         success: function(response) {
-                                                            if (response.status) {
+                                                            if (response.code == 0) {
                                                                 location.reload();
                                                             } else {
                                                                 alert(response.message);

@@ -10,7 +10,7 @@
             },
             dataType: "JSON",
             success: function(response) {
-                if (!response.status) {
+                if (response.code) {
                     alert(response.message);
                 } else {
                     location.reload();
