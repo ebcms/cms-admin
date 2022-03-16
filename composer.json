@@ -9,5 +9,8 @@
         "psr-4": {
             "App\\Ebcms\\CmsAdmin\\": "src/library/"
         }
+    },
+    "extra": {
+        "title": "CMS - 后台管理"
     }
 }
