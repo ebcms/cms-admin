@@ -176,6 +176,6 @@ class Update extends Common
             'id' => $request->post('id', 0, ['intval']),
         ]);
 
-        return $this->success('操作成功！', 'javascript:history.go(-2)');
+        return $this->success('操作成功！');
     }
 }

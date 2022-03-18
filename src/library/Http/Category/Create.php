@@ -209,6 +209,6 @@ class Create extends Common
             'redirect_uri' => $request->post('redirect_uri', ''),
             'priority' => 0,
         ]);
-        return $this->success('操作成功！', 'javascript:history.go(-2)');
+        return $this->success('操作成功！');
     }
 }
