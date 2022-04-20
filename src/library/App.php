@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Ebcms\CmsAdmin;
 
-use DigPHP\Framework\AppInterface;
+use Ebcms\Framework\AppInterface;
 use PDO;
 
 class App implements AppInterface

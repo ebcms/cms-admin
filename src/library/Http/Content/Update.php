@@ -18,9 +18,9 @@ use DigPHP\Form\Field\Input;
 use DigPHP\Form\Field\Radio;
 use DigPHP\Form\Field\Summernote;
 use DigPHP\Form\Field\Textarea;
-use DigPHP\Framework\Config;
 use DigPHP\Request\Request;
 use DigPHP\Router\Router;
+use Ebcms\Framework\Config;
 use Exception;
 
 class Update extends Common

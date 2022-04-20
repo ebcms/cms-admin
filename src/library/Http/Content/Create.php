@@ -8,9 +8,9 @@ use App\Ebcms\Admin\Http\Common;
 use DigPHP\Database\Db;
 use DigPHP\Form\Builder;
 use DigPHP\Form\Component\Col;
-use DigPHP\Form\Component\Summary;
 use DigPHP\Form\Component\Html;
 use DigPHP\Form\Component\Row;
+use DigPHP\Form\Component\Summary;
 use DigPHP\Form\Field\Checkbox;
 use DigPHP\Form\Field\Cover;
 use DigPHP\Form\Field\Hidden;
@@ -18,9 +18,9 @@ use DigPHP\Form\Field\Input;
 use DigPHP\Form\Field\Radio;
 use DigPHP\Form\Field\Summernote;
 use DigPHP\Form\Field\Textarea;
-use DigPHP\Framework\Config;
 use DigPHP\Request\Request;
 use DigPHP\Router\Router;
+use Ebcms\Framework\Config;
 use Exception;
 
 class Create extends Common
@@ -50,7 +50,7 @@ class Create extends Common
                     ]),
                     new Cover('封面图', 'cover', $content['cover'] ?? '', $router->build('/ebcms/admin/upload')),
                     new Checkbox('属性', 'attrs', (array) json_decode($content['attrs'] ?? '[]', true), array_combine($config->get('attrs@ebcms.cms-admin', []), $config->get('attrs@ebcms.cms-admin', [])), [
-                        'help' => '在/config/ebcms/cms-admin/attrs.php中配置'
+                        'help' => '在/config/ebcms/cms-admin/attrs.php中配置',
                     ]),
                     (new Summary('其他参数'))->addItem(
                         new Input('关键词', 'keywords', $content['keywords'] ?? ''),
@@ -91,7 +91,7 @@ class Create extends Common
                     })()),
                     new Summernote('内容', 'body', $content['body'] ?? '', $router->build('/ebcms/admin/upload')),
                     new Input('聚合标签', 'tags', implode(' ', json_decode($content['tags'] ?? '[]', true)), [
-                        'help' => '多个标签用空格分割'
+                        'help' => '多个标签用空格分割',
                     ]),
                     new Html((function () use ($category, $content, $router): string {
                         if ($category['fields']) {
