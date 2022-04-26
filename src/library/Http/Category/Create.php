@@ -6,20 +6,20 @@ namespace App\Ebcms\CmsAdmin\Http\Category;
 
 use App\Ebcms\Admin\Http\Common;
 use App\Ebcms\CmsAdmin\Model\Category;
-use DigPHP\Database\Db;
-use DigPHP\Form\Builder;
-use DigPHP\Form\Component\Col;
-use DigPHP\Form\Component\Row;
-use DigPHP\Form\Component\Summary;
-use DigPHP\Form\Field\Cover;
-use DigPHP\Form\Field\Hidden;
-use DigPHP\Form\Field\Input;
-use DigPHP\Form\Field\Radio;
-use DigPHP\Form\Field\Select;
-use DigPHP\Form\Field\Summernote;
-use DigPHP\Form\Field\Textarea;
-use DigPHP\Request\Request;
-use DigPHP\Router\Router;
+use DiggPHP\Database\Db;
+use DiggPHP\Form\Builder;
+use DiggPHP\Form\Component\Col;
+use DiggPHP\Form\Component\Row;
+use DiggPHP\Form\Component\Summary;
+use DiggPHP\Form\Field\Cover;
+use DiggPHP\Form\Field\Hidden;
+use DiggPHP\Form\Field\Input;
+use DiggPHP\Form\Field\Radio;
+use DiggPHP\Form\Field\Select;
+use DiggPHP\Form\Field\Summernote;
+use DiggPHP\Form\Field\Textarea;
+use DiggPHP\Request\Request;
+use DiggPHP\Router\Router;
 
 class Create extends Common
 {

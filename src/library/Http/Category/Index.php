@@ -6,7 +6,7 @@ namespace App\Ebcms\CmsAdmin\Http\Category;
 
 use App\Ebcms\Admin\Http\Common;
 use App\Ebcms\CmsAdmin\Model\Category;
-use DigPHP\Template\Template;
+use DiggPHP\Template\Template;
 
 class Index extends Common
 {

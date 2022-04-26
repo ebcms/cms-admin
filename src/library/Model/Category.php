@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Ebcms\CmsAdmin\Model;
 
-use DigPHP\Database\Db;
+use DiggPHP\Database\Db;
 
 class Category
 {

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Ebcms\CmsAdmin\Http\Content;
 
 use App\Ebcms\Admin\Http\Common;
-use DigPHP\Database\Db;
-use DigPHP\Request\Request;
+use DiggPHP\Database\Db;
+use DiggPHP\Request\Request;
 
 class Delete extends Common
 {

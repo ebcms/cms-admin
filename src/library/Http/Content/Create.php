@@ -5,22 +5,22 @@ declare(strict_types=1);
 namespace App\Ebcms\CmsAdmin\Http\Content;
 
 use App\Ebcms\Admin\Http\Common;
-use DigPHP\Database\Db;
-use DigPHP\Form\Builder;
-use DigPHP\Form\Component\Col;
-use DigPHP\Form\Component\Html;
-use DigPHP\Form\Component\Row;
-use DigPHP\Form\Component\Summary;
-use DigPHP\Form\Field\Checkbox;
-use DigPHP\Form\Field\Cover;
-use DigPHP\Form\Field\Hidden;
-use DigPHP\Form\Field\Input;
-use DigPHP\Form\Field\Radio;
-use DigPHP\Form\Field\Summernote;
-use DigPHP\Form\Field\Textarea;
-use DigPHP\Request\Request;
-use DigPHP\Router\Router;
-use Ebcms\Framework\Config;
+use DiggPHP\Database\Db;
+use DiggPHP\Form\Builder;
+use DiggPHP\Form\Component\Col;
+use DiggPHP\Form\Component\Html;
+use DiggPHP\Form\Component\Row;
+use DiggPHP\Form\Component\Summary;
+use DiggPHP\Form\Field\Checkbox;
+use DiggPHP\Form\Field\Cover;
+use DiggPHP\Form\Field\Hidden;
+use DiggPHP\Form\Field\Input;
+use DiggPHP\Form\Field\Radio;
+use DiggPHP\Form\Field\Summernote;
+use DiggPHP\Form\Field\Textarea;
+use DiggPHP\Request\Request;
+use DiggPHP\Router\Router;
+use DiggPHP\Framework\Config;
 use Exception;
 
 class Create extends Common
@@ -105,7 +105,7 @@ class Create extends Common
                                 $help = $help ?: '';
                                 $ext = $ext ?: '';
 
-                                $field_class = 'DigPHP\\Form\\Field\\' . $type;
+                                $field_class = 'DiggPHP\\Form\\Field\\' . $type;
                                 if (!class_exists($field_class)) {
                                     throw new Exception('类型' . $type . '不支持');
                                 }
