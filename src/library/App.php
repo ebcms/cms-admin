@@ -57,7 +57,10 @@ class App implements AppInterface
             $prefix = $cfg['master']['prefix'];
         }
 
-        $dbh = new PDO("{$cfg['master']['database_type']}:host={$cfg['master']['server']};dbname={$cfg['master']['database_name']}", $cfg['master']['username'], $cfg['master']['password']);
+        $dbh = new PDO("{$cfg['master']['database_type']}:host={$cfg['master']['server']};dbname={$cfg['master']['database_name']}", $cfg['master']['username'], $cfg['master']['password'], $cfg['master']['option']);
+
+        $dbh->exec('SET SQL_MODE=ANSI_QUOTES');
+        $dbh->exec('SET NAMES utf8mb4 COLLATE utf8mb4_general_ci');
 
         foreach ($sqls as $sql) {
             $dbh->exec(str_replace('prefix_', $prefix, $sql . ';'));
